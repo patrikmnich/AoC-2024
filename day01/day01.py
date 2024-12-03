@@ -1,5 +1,4 @@
-with open("day01.txt", "r") as f:
-    contents = f.readlines()
+contents = open("day01.txt").readlines()
 
 list1 = sorted([int(line.split(" ")[0]) for line in contents])
 list2 = sorted([int(line.strip().split(" ")[-1]) for line in contents])

@@ -25,14 +25,12 @@ while True:
     do_match = re.search("do\\(\\)", copy)
     dont_match = re.search("don't\\(\\)", copy)
 
-    if do_match and do_match.span(0)[0] < match.span(0)[0]:
+    if do_match and do_match.span() < match.span():
         enabled = True
 
-    if dont_match and dont_match.span(0)[0] < match.span(0)[0]:
+    if dont_match and dont_match.span() < match.span():
         enabled = False
 
-    print(enabled)
-    print(copy)
     if enabled:
         result2 += int(match.groups()[0]) * int(match.groups()[1])
 

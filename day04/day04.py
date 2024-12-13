@@ -1,6 +1,5 @@
 contents = open("day04.txt").read()
 
-
 def get_main_diagonals(rows):
     diagonals = []
     num_rows = len(rows)
@@ -61,3 +60,27 @@ for diagonal in diagonals:
 print(result1)
 
 # Part 2
+xmas_count = 0
+
+for i in range(len(rows)):
+    for j in range(len(rows)):
+        try:
+            if rows[i+1][j+1] != 'A':
+                continue
+            if rows[i][j] == 'M' and rows[i + 2][j + 2] == 'S':
+                print(f"row {i} index {j}")
+                print(rows[i][j], rows[i + 1][j + 1], rows[i + 2][j + 2])
+                if rows[i + 2][j] == 'M' and rows[i][j + 2] == 'S':
+                    xmas_count += 1
+                elif rows[i + 2][j] == 'S' and rows[i][j + 2] == 'M':
+                    xmas_count += 1
+            if rows[i][j] == 'S' and rows[i + 2][j + 2] == 'M':
+                if rows[i + 2][j] == 'M' and rows[i][j + 2] == 'S':
+                    xmas_count += 1
+                elif rows[i + 2][j] == 'S' and rows[i][j + 2] == 'M':
+                    xmas_count += 1
+                continue
+        except IndexError:
+            continue
+
+print(xmas_count)

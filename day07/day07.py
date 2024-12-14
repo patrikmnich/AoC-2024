@@ -3,7 +3,7 @@ from itertools import product
 contents = open("day07_test.txt").readlines()
 
 
-def calculate_calibration(include_concatenation = False) -> int:
+def calculate_calibration(include_concatenation=False) -> int:
     results = []
 
     calibration_result = 0
@@ -22,13 +22,11 @@ def calculate_calibration(include_concatenation = False) -> int:
                     res += num
                 if op and op == "*":
                     res *= num
-                if include_concatenation and op and op == "||":
-                    # work with `numbers` copy and update it with concatenations
-                    pass
-
-            print(res)
+                if op and op == "||":
+                    res = int(f"{res}{num}")
             if res == target:
                 results.append(res)
+                break
 
         calibration_result += target if any([res == target for res in results]) else 0
     return calibration_result
